@@ -1,113 +1,69 @@
+---
 
-⸻
+## 🎯 Project Goals
 
-⚽ FIFA Players Data Analysis with PySpark
+- Clean and preprocess raw FIFA player data using PySpark
+- Perform transformation and create meaningful features (UDFs, Spark SQL)
+- Save optimized data using Parquet
+- Convert to Pandas for plotting
+- Visualize player stats, trends, and distributions
 
-A complete PySpark-based project for cleaning, transforming, analyzing, and visualizing FIFA football player data. This project demonstrates practical data engineering workflows and exploratory data analysis using Spark and Python visualization libraries.
+---
 
-⸻
+## 🧰 Technologies Used
 
-📂 Project Structure
+| Library/Tool     | Use Case |
+|------------------|----------|
+| **PySpark**      | Distributed data processing, DataFrame operations |
+| **Pandas**       | In-memory manipulation, easier plotting |
+| **Matplotlib**   | Data visualization (plots, bar charts, etc.) |
+| **Seaborn**      | Advanced statistical plots |
+| **Parquet**      | Efficient file format for storing large structured data |
 
-football-pyspark/
-├── data/                           # Raw and cleaned data (CSV & Parquet)
-├── 01_clean_and_store.py          # Script for cleaning raw CSV and saving as Parquet
-├── 02_transform_query.py          # Notebook for data transformation, UDFs, and analysis
-├── 03_visualize_or_insight.ipynb  # Notebook for generating visual insights using Pandas + Seaborn
-├── README.md                      # Project overview and instructions
+---
 
+## 📊 Key Features
 
-⸻
+### 1. 🧹 Data Cleaning (01_ingest_clean.py)
+- Dropped records with missing player names or key metrics
+- Replaced null salary/value fields with 0
+- Exported cleaned data to `.parquet`
 
-🚀 Getting Started
+### 2. 🔄 Transformation & Querying (02_transform_query.py)
+- Created a UDF to convert currency strings (e.g., "€105M") to numeric
+- Derived new fields:
+  - `is_top_player`: Boolean for high-rated players (Overall ≥ 85)
+  - `age_bucket`: Categorized age groups
+- Executed Spark SQL queries to compute player counts per nationality
 
-✅ Requirements
-	•	Python 3.10+
-	•	Apache Spark
-	•	PySpark
-	•	Pandas
-	•	Matplotlib
-	•	Seaborn
-	•	Jupyter Notebook (optional but recommended)
+### 3. 📈 Visual Insights (03_visualize_or_insight.ipynb)
+- Converted Spark DataFrame → Pandas for plotting
+- Visualized:
+  - Top 10 player nationalities
+  - Average overall ratings by age bucket
+  - Age vs Wage scatter plot
+  - Top 10 most valuable players
 
-💻 Set Up Environment
+---
 
-# Recommended: Create virtual environment
-python3 -m venv .venv
-source .venv/bin/activate
+## ✅ Skills Demonstrated
 
-# Install dependencies
-pip install pyspark pandas matplotlib seaborn notebook
+- PySpark DataFrame operations, SQL queries, UDFs
+- Parquet-based storage for optimized analytics
+- Data visualization using Pandas, Matplotlib, Seaborn
+- Working with large datasets in notebooks
+- Clean code and modular data pipeline structure
 
+---
 
-⸻
+## 📎 Dataset Source
 
-🧠 Project Goals
-	•	Clean and preprocess FIFA player dataset using PySpark
-	•	Apply user-defined functions (UDFs) for currency conversion
-	•	Perform statistical analysis and transformations
-	•	Generate insights and visualizations using Pandas + Seaborn
+- [Kaggle - FIFA 21 Complete Player Dataset](https://www.kaggle.com/stefanoleone992/fifa-21-complete-player-dataset)
 
-⸻
+---
 
-📊 Features & Highlights
+## 🚀 Future Enhancements
 
-1. Data Cleaning (01_clean_and_store.py)
-	•	Dropped nulls in essential fields: long_name, age, club_name, etc.
-	•	Replaced missing numeric values (value_eur, wage_eur) with 0
-	•	Saved cleaned data to Parquet for efficient I/O
-
-2. Transformation & Querying (02_transform_query.py)
-	•	Wrote a PySpark UDF to convert currency fields from “€105M” to float
-	•	Added new columns:
-	•	is_top_player: Players with Overall >= 85
-	•	age_bucket: Categorized players into Teen, 20s, 30s, 40+
-	•	Performed aggregations and grouping:
-	•	Average stats by nationality
-	•	Correlation between Age and Wage_EUR
-	•	Used Spark SQL for player nationality distribution
-
-3. Visualization (03_visualize_or_insight.ipynb)
-	•	Converted Spark DataFrame to Pandas
-	•	Used Matplotlib & Seaborn to plot:
-	•	Top 10 countries by player count
-	•	Average rating by age bucket
-	•	Age vs Wage scatter plot (highlighting top players)
-	•	Top 10 most valuable players
-
-⸻
-
-🔍 Example Visuals
-
-Player Distribution by Country	Age vs Wage
-	
-
-(Optional: Add visual plots if you export and save them to /images/)
-
-⸻
-
-🧰 Tools & Libraries Used
-
-Tool	    Purpose
-PySpark	    Distributed data processing & analysis
-Pandas	    Data manipulation for plotting
-Matplotlib	Data visualization
-Seaborn     Statistical visualizations
-Jupyter     Lab	Interactive notebook interface
-
-
-⸻
-
-✅ Skills Demonstrated
-	•	PySpark (DataFrames, SQL, UDFs)
-	•	Data Cleaning and Transformation
-	•	Writing clean, modular Python code
-	•	Performing EDA and generating insights
-	•	Building scalable, reproducible workflows
-
-⸻
-
-📎 Credits
-	•	FIFA 21 Player dataset from Kaggle
-
-⸻
+- Add interactive dashboards (Plotly, Streamlit)
+- Build a REST API using Flask/FastAPI for real-time queries
+- Integrate Spark on cloud (AWS EMR / Databricks)
